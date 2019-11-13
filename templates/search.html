@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="container">
+    <div class="card text-center">
+      <div class="card-header">Results</div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+          </tr>
+          {% for result in results %}
+            <tr>
+              <td> {{ loop.index }} </td>
+              <td> <a href="{{ url_for('info', isbn=result.isbn) }}"> {{ result.title }}</a></td>
+              <td> {{ result.author }} </td>
+              <td> {{ result.isbn }} </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-auto">
+        <div class="card">
+          <div class="card-body">
+              <h6 class="card-title"> Title </h6>
+              <p class="card-text">{{ book_info[1] }}</p>
+              <h6 class="card-title"> Author</h6>
+              <p class="card-text">{{ book_info[2] }}</p>
+              <h6 class="card-title"> Year </h6>
+              <p class="card-text">{{ book_info[3] }}</p>
+              <h6 class="card-title"> ISBN </h6>
+              <p class="card-text">{{ book_info[0] }}</p>
+              <h6 class="card-title"> Goodreads ratings </h6>
+              <p class="card-text">{{ ratings_total }}</p>
+              <h6 class="card-title"> Goodreads rating </h6>
+              <p class="card-text">{{ rating }} / 5</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-header text-center">Reviews</div>
+            <div class="card-body">
+              {% if not session.logged_in %}
+                <p>To add a review, please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a>.</p>
+              {% elif username in reviews %}
+                <p>Thank you for posting a review for "{{ book_info[1] }}" by {{ book_info[2] }}! Click here to <a href="{{ url_for('index') }}">keep browsing</a>.</p>
+              {% else %}
+              <form action="{{ url_for('info', isbn=book_info[0]) }}" method="post">
+                <fieldset>
+                  <input type="radio" id="st1" name="rating" value="1" checked="checked" />
+                  <label for="st1">1</label>
+                  <input type="radio" id="st2" name="rating" value="2" />
+                  <label for="st2">2</label>
+                  <input type="radio" id="st3" name="rating" value="3" />
+                  <label for="st3">3</label>
+                  <input type="radio" id="st4" name="rating" value="4" />
+                  <label for="st4">4</label>
+                  <input type="radio" id="st5" name="rating" value="5" />
+                  <label for="st5">5</label>
+                </fieldset>
+                <textarea class="form-control" name="comment" rows="3" placeholder="Comment here ..." required maxlength="150"></textarea>
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </form>
+              {% endif %}
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th> Username </th>
+                  <th> Review </th>
+                  <th> Rating </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for review in reviews %}
+                <tr>
+                  <td> {{ review.username }} </td>
+                  <td> {{ review.review }} </td>
+                  <td> {{ review.rating }} </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
