@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <main class="login-form">
+    <div class="cotainer">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">Register</div>
+            <div class="card-body">
+              <form action="/register" method="post">
+                <div class="form-group row">
+                  <label class="col-md-4 col-form-label text-md-right">First Name</label>
+                  <div class="col-md-6">
+                    <input class="form-control" type="text" name="first_name" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                  <div class="col-md-6">
+                    <input class="form-control" type="text" name="username" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                  <div class="col-md-6">
+                    <input class="form-control" type="password" name="password" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="password" class="col-md-4 col-form-label text-md-right">Confirm password</label>
+                  <div class="col-md-6">
+                    <input class="form-control" type="password" name="password2" required>
+                  </div>
+                </div>
+                <div class="col-md-6 offset-md-4">
+                  {% if error_message %}
+                    {{ error_message }}
+                  {% endif %}
+                </div>
+                <div class="col-md-6 offset-md-4">
+                  <button type="submit" formmethod="post" class="btn btn-primary">Register</button>
+                  <a role="button" href="./" class="btn btn-primary">Search without registration</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

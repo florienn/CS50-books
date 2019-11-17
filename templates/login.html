@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <main class="login-form">
+    <div class="cotainer">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">Login</div>
+              <div class="card-body">
+                <form action="/login" method="post">
+                  <div class="form-group row">
+                    <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" name="username" required autofocus>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                    <div class="col-md-6">
+                      <input type="password" class="form-control" name="password" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6 offset-md-4">
+                    {% if error_message %}
+                      {{ error_message }}
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6 offset-md-4">
+                    <button type="submit" formmethod="post" class="btn btn-primary">Login</button>
+                    <a type="text" href="./" class="btn btn-primary">Search without login</a>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}
