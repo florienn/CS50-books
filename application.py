@@ -134,7 +134,11 @@ def info(isbn):
     goodreads_rating = (data["books"][0]["average_rating"])
     ratings_total = (data["books"][0]["work_ratings_count"])
 
-    return render_template("info.html", book_info=book, rating=goodreads_rating, reviews=reviews, ratings_total=ratings_total, username=user["username"])
+    username_reviews = []
+    for review in reviews:
+        username_reviews += review.username
+
+    return render_template("info.html", book_info=book, rating=goodreads_rating, reviews=reviews, ratings_total=ratings_total, username=user["username"], username_reviews=username_reviews)
 
 
 # API access: JSON response
@@ -144,7 +148,6 @@ def api(isbn):
 
     if book is None:
         return render_template("error.html", error_message="404: invalid ISBN.")
-
 
     reviews = db.execute("SELECT * FROM reviews WHERE isbn = :isbn", {"isbn": isbn}).fetchall()
     res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "TingtldrKhBrZBDizSXh3g", "isbns": isbn})
