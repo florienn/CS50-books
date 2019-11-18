@@ -27,7 +27,7 @@
             <div class="card-body">
               {% if not session.logged_in %}
                 <p>To add a review, please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a>.</p>
-              {% elif username in reviews %}
+              {% elif username in username_reviews %}
                 <p>Thank you for posting a review for "{{ book_info[1] }}" by {{ book_info[2] }}! Click here to <a href="{{ url_for('index') }}">keep browsing</a>.</p>
               {% else %}
               <form action="{{ url_for('info', isbn=book_info[0]) }}" method="post">
