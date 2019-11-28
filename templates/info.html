@@ -6,30 +6,24 @@
       <div class="col-auto">
         <div class="card">
           <div class="card-body">
-              <h6 class="card-title"> Title </h6>
-              <p class="card-text">{{ book_info[1] }}</p>
-              <h6 class="card-title"> Author</h6>
-              <p class="card-text">{{ book_info[2] }}</p>
-              <h6 class="card-title"> Year </h6>
-              <p class="card-text">{{ book_info[3] }}</p>
-              <h6 class="card-title"> ISBN </h6>
-              <p class="card-text">{{ book_info[0] }}</p>
-              <h6 class="card-title"> Goodreads ratings </h6>
-              <p class="card-text">{{ ratings_total }}</p>
-              <h6 class="card-title"> Goodreads rating </h6>
-              <p class="card-text">{{ rating }} / 5</p>
+              <p class="card-text">Title: {{ book_info[1] }}</p>
+              <p class="card-text">Author: {{ book_info[2] }}</p>
+              <p class="card-text">Year: {{ book_info[3] }}</p>
+              <p class="card-text">ISBN: {{ book_info[0] }}</p>
+              <p class="card-text">Goodreads ratings: {{ ratings_total }}</p>
+              <p class="card-text">Average rating: {{ rating }} / 5</p>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card">
           <div class="card-header text-center">Reviews</div>
-            <div class="card-body">
-              {% if not session.logged_in %}
-                <p>To add a review, please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a>.</p>
-              {% elif username in username_reviews %}
-                <p>Thank you for posting a review for "{{ book_info[1] }}" by {{ book_info[2] }}! Click here to <a href="{{ url_for('index') }}">keep browsing</a>.</p>
-              {% else %}
+          <div class="card-body">
+            {% if not session.logged_in %}
+              <p>To add a review, please <a href="{{ url_for('login') }}">login</a> or <a href="{{ url_for('register') }}">register</a>.</p>
+            {% elif session.username in username_reviews %}
+              <p>Thank you for posting a review for "{{ book_info[1] }}" by {{ book_info[2] }}! Click here to <a href="{{ url_for('index') }}">keep browsing</a>.</p>
+            {% else %}
               <form action="{{ url_for('info', isbn=book_info[0]) }}" method="post">
                 <fieldset>
                   <input type="radio" id="st1" name="rating" value="1" checked="checked" />
@@ -46,7 +40,7 @@
                 <textarea class="form-control" name="comment" rows="3" placeholder="Comment here ..." required maxlength="150"></textarea>
                 <button class="btn btn-primary" type="submit">Submit</button>
               </form>
-              {% endif %}
+            {% endif %}
             <table class="table table-striped">
               <thead>
                 <tr>

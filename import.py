@@ -1,3 +1,13 @@
+"""
+import.py
+
+Minor programmeren (CS50), Web App Studio
+November 2019
+Florien Altena
+
+Imports/creates database with SQL
+"""
+
 import os
 import csv
 import requests
@@ -11,7 +21,12 @@ if not os.getenv("DATABASE_URL"):
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
+
 def main():
+    """
+    Creates tables for users, book reviews and books
+    """
+
     db.execute("CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR NOT NULL, password VARCHAR NOT NULL)")
     db.execute("CREATE TABLE reviews (isbn VARCHAR NOT NULL,review VARCHAR NOT NULL, rating INTEGER NOT NULL,username VARCHAR NOT NULL)")
     db.execute("CREATE TABLE books (isbn VARCHAR PRIMARY KEY,title VARCHAR NOT NULL,author VARCHAR NOT NULL,year VARCHAR NOT NULL)")
