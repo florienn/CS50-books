@@ -10,27 +10,27 @@
             <div class="card-body">
               <form action="/register" method="post">
                 <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">First Name</label>
+                  <label for="firstName" class="col-md-4 col-form-label text-md-right">First Name</label>
                   <div class="col-md-6">
-                    <input class="form-control" type="text" name="first_name" required>
+                    <input class="form-control" type="text" name="first_name" id="firstName" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
                   <div class="col-md-6">
-                    <input class="form-control" type="text" name="username" required>
+                    <input class="form-control" type="text" name="username" id="username" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                  <label for="pwd" class="col-md-4 col-form-label text-md-right">Password</label>
                   <div class="col-md-6">
-                    <input class="form-control" type="password" name="password" required>
+                    <input class="form-control" type="password" name="password" id="pwd" required>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="password" class="col-md-4 col-form-label text-md-right">Confirm password</label>
+                  <label for="pwd2" class="col-md-4 col-form-label text-md-right">Confirm password</label>
                   <div class="col-md-6">
-                    <input class="form-control" type="password" name="password2" required>
+                    <input class="form-control" type="password" name="password2" id="pwd2" required>
                   </div>
                 </div>
                 <div class="col-md-6 offset-md-4">
